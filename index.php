@@ -27,7 +27,7 @@
     </div>
 
     <div class="container-input">
-        <form action="">
+        <form action="destination.php" method="GET">
             <div>
                 <div class="d-flex input-area-lunghezza">
                     <h4 class="first-input-h">Lunghezza password:</h4>
