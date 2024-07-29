@@ -18,7 +18,7 @@
     </div>
 
     <div class="notifiche">
-        <span>Password</span>
+        <span><?php echo $output ?></span>
     </div>
 
     <a id="decoration-text" href="index.php"><button class="btn btn-secondary">Torna al generatore</button></a>
