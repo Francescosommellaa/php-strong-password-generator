@@ -18,8 +18,12 @@ if (isset($_GET['length']) && !empty($_GET['length'])) {
     if ($_GET['length'] < $min || $_GET['length'] > $max) {
         $output = "Errore: la password deve avere una lunghezza compresa fra $min e $max caratteri";
     } else {
-        $psw = generatepassword($allChars, $_GET['length']);
-        $output = "la password generata è:" . htmlspecialchars($psw);
+        $lunghezzaPassword = $_GET["length"];
+        $lettere = $_GET["lettere"] ?? false;
+        $numeri = $_GET["numeri"] ?? false;
+        $simboli = $_GET["simboli"] ?? false;
+        $passwordGenerata = generatepassword($lunghezzaPassword, $lettere, $numeri, $simboli);
+        $output = "la password generata è:" . htmlspecialchars($passwordGenerata);
     }
 } else {
     $output = "Genera una password con una lunghezza compresa fra $min e $max caratteri";
@@ -60,8 +64,8 @@ if (isset($_GET['length']) && !empty($_GET['length'])) {
                     <input class="input-space" type="number" name="length" id="length">
                 </div>
 
-                <!-- <div class="d-flex input-area-ripetizioni">
-                    <h4>Consenti ripetizioni di uno o più caratteri:</h4>
+                <div class="d-flex input-area-ripetizioni">
+                    <!-- <h4>Consenti ripetizioni di uno o più caratteri:</h4>
                     <div class="input-space">
                         <div>
                             <input type="radio" name="ripetizioni" value="si" checked="checked" id="si">
@@ -70,27 +74,27 @@ if (isset($_GET['length']) && !empty($_GET['length'])) {
                         <div>
                             <input type="radio" name="ripetizioni" value="no" id="no">
                             <label for="no">No</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="lettere" value="lettere" id="lettere">
-                            <label for="lettere">Lettere</label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" name="numeri" value="numeri" id="numeri">
-                            <label for="numeri">Numeri</label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" name="simboli" value="simboli" id="simboli">
-                            <label for="simboli">Simboli</label>
-                        </div>
+                        </div> -->
+                    <div>
+                        <input type="checkbox" name="lettere" value="lettere" id="lettere">
+                        <label for="lettere">Lettere</label>
                     </div>
-                </div> -->
+
+                    <div>
+                        <input type="checkbox" name="numeri" value="numeri" id="numeri">
+                        <label for="numeri">Numeri</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="simboli" value="simboli" id="simboli">
+                        <label for="simboli">Simboli</label>
+                    </div>
+                </div>
             </div>
-            <button type="submit" name="submit" value="" class="btn btn-primary">Invia</button>
-            <button type="reset" class="btn btn-secondary">Annulla</button>
-        </form>
+    </div>
+    <button type="submit" name="submit" value="" class="btn btn-primary">Invia</button>
+    <button type="reset" class="btn btn-secondary">Annulla</button>
+    </form>
     </div>
 </body>
 
