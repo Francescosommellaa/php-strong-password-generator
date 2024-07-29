@@ -1,6 +1,6 @@
 <?php
 
-function generatepassword($length, $lettere, $numeri, $simboli)
+function generatepassword($length, $lettere, $numeri, $simboli, $ripetizioni)
 {
     $base_string = '';
 
@@ -16,11 +16,19 @@ function generatepassword($length, $lettere, $numeri, $simboli)
         $base_string .= '!?&%$<>^+-*/()[]{}@#_=';
     }
 
+    if (!$ripetizioni && $length > strlen($base_string)) {
+        return false;
+    }
+
     $psw = '';
 
     while (strlen($psw) < $length) {
         $index = rand(0, strlen($base_string) - 1);
         $char = $base_string[$index];
+        if (!$ripetizioni && strpos($psw, $char) !== false) {
+            continue;
+        }
+
         $psw .= $char;
     }
 
